@@ -8,7 +8,6 @@ html_code = """
 <script src="https://raw.github.com/mrdoob/three.js/master/build/three.js"></script> 
 <script src="http://www.script-tutorials.com/demos/382/js/OrbitControls.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>  
-
 <div class="output_area">
     <div id="mydiv_fx" style="width:50%;height:50%">
     </div>
@@ -91,6 +90,8 @@ def visualization(vertices, faces, pointdata):
     colors = [ cm.jet(x) for x in pointdata ]
     json_data_sum = json.dumps({'vertices': vertices, 'elements': faces, 'colors': colors})
     Javascript(f"document.triangleData = {json_data_sum}")
+    Javascript("console.log(document.triangleData);")
+    print(json_data_sum)
     display(HTML(html_code))
 
 if __name__ == "__main__":
