@@ -7,17 +7,18 @@ import json
 def display_data():
     html_code_visual = """
     <style> canvas { width: 50%; height: 50% }</style>
+    <script type="text/javascript" src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.js"></script>
     <script src="https://raw.github.com/mrdoob/three.js/master/build/three.js"></script> 
     <script src="http://www.script-tutorials.com/demos/382/js/OrbitControls.js"></script>
     <div class="output_area">
-        <div id="mydiv_new" style="width:50%;height:50%">
+        <div id="mydiv_op" style="width:50%;height:50%">
         </div>
         <div id="outputnew">
         </div>
     </div>
     <script>
     // initial set up
-    var renderWindowContainer = document.getElementById("mydiv_new");
+    var renderWindowContainer = document.getElementById("mydiv_op");
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     var renderer = new THREE.WebGLRenderer();
@@ -85,6 +86,7 @@ def visualization(vertices, faces, pointdata):
     json_data = json.dumps({'vertices': vertices, 'elements': faces, 'colors': colors})
     Javascript(f"document.triangleDataSet = {json_data}")
     Javascript("console.log(document.triangleDataSet);")
+    print("test")
     display_data()
 
 

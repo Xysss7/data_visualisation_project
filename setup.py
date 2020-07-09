@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="visualizationtest",
+    name="datavisualization",
     version="1.1.0",
     author="Yangsha Xie",
     packages=['datavisualization'],
