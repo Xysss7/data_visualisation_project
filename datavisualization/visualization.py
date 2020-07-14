@@ -81,12 +81,16 @@ def display_data():
     display(HTML(html_code_visual))
 
 
-def visualization(vertices, faces, pointdata):
+def visualization(ver, ele, pointdata):
+    print("Converting the data...")
     colors = [ cm.jet(x) for x in pointdata ]
-    json_data = json.dumps({'vertices': vertices, 'elements': faces, 'colors': colors})
-    Javascript(f"document.triangleDataSet = {json_data}")
+    #json_data = json.dumps({'vertices': vertices, 'elements': faces, 'colors': colors})
+    #Javascript(f"document.triangleDataSet = {json_data}")
+    Javascript("document.triangleDataSet = %s; console.log(document.triangleDataSet);" 
+           % json.dumps({'vertices': ver, 'faces': ele, 'pointdata': colors}))
     Javascript("console.log(document.triangleDataSet);")
-    print("test")
+    print("Data converted and passed...")
+    print("Display...")
     display_data()
 
 
