@@ -6,7 +6,7 @@ This is a library that help to visualize 3D images of data points.
 
 We can install directly from git URL:
 ```bash
-pip install git+git://github.com/Xysss7/data_visualisation_project
+pip install --upgrade git+git://github.com/Xysss7/data_visualisation_project
 ```
 
 Or browse to the directory where this file lives, and run:
