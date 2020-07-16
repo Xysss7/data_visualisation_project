@@ -33,7 +33,7 @@ def display_data():
         var vertices = document.triangleDataSet.vertices;    
         var faces = document.triangleDataSet.faces;    
         var data = document.triangleDataSet.pointdata;    
-        
+
         var i = 0;
         for (i = 0; i < vertices.length; i += 3) { 
             geometry.vertices.push(new THREE.Vector3(vertices[i], vertices[i+1], vertices[i+2]));
@@ -66,6 +66,8 @@ def display_data():
         camera.position.z = 2;
         animate();
         controls.addEventListener( 'change', render );
+        renderWindowContainer.id = "usedid";
+
         function render() {
             renderer.render( scene, camera );
         }
