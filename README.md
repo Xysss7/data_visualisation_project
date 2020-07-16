@@ -17,9 +17,11 @@ That command will download any dependencies we have
 
 ## Usage
 Example
+In the jupyter lab:
 
+cell[1]:
 ```python
-import datavisualization
+import datavisualization as dv
 
 vertices = [0, 0, 0,
             1, 0, 0,
@@ -28,7 +30,12 @@ vertices = [0, 0, 0,
 faces = [0, 1, 2,
          0, 2, 3]
 point_data = [0.0, 1.0, 2.3, .5]
-datavisualization.visualization(vertices, faces, point_data)
+dv.passdata(vertices, faces, point_data)
+```
+
+cell[2]:
+```python
+dv.visualize(vertices, faces, point_data)
 ```
 
 You will get 3D image visualized you data points.
