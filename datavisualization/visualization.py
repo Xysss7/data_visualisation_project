@@ -30,30 +30,26 @@ def display_data():
     var controls = new THREE.OrbitControls( camera, renderer.domElement );
     var geometry = new THREE.Geometry();
     var vertices = document.triangleDataSet.vertices;    
-    var faces = document.triangleDataSet.elements;    
-    var data = document.triangleDataSet.colors;    
+    var faces = document.triangleDataSet.faces;    
+    var data = document.triangleDataSet.pointdata;    
 
     for (i = 0; i < vertices.length; i += 3) { 
         geometry.vertices.push(new THREE.Vector3(vertices[i], vertices[i+1], vertices[i+2]));
     }
-
     console.log(
         document.triangleDataSet,
-        data
+        faces
     );
-
     var colors = new Array();
     for (i = 0; i < data.length; i++) { 
         colors[i] = new THREE.Color(data[i][0], data[i][1], data[i][2]);
     }
-
     var j = 0;
     for (i = 0; i < faces.length; i += 3) { 
         geometry.faces.push(new THREE.Face3(faces[i], faces[i+1], faces[i+2]));
         geometry.faces[j].vertexColors.push( colors[faces[i]], colors[faces[i+1]], colors[faces[i+2]] );
         j = j+1;
     }
-
     geometry.computeFaceNormals();
     var parameters = {
         vertexColors: THREE.VertexColors,
@@ -81,14 +77,19 @@ def display_data():
     display(HTML(html_code_visual))
 
 
+def passdata(ver, ele, point):
+    colord = [ cm.jet(x) for x in point ]
+    #div_name = ranstr(4)
+    js_code = """
+    document.triangleDataSet = %s; 
+    console.log(document.triangleDataSet);
+    """ % json.dumps({'vertices': ver, 'faces': ele, 'pointdata': colord})
+    print("Passing the data...")
+    return Javascript(js_code)
+
+
 def visualization(ver, ele, pointdata):
-    print("Converting the data...")
-    colors = [ cm.jet(x) for x in pointdata ]
-    #json_data = json.dumps({'vertices': vertices, 'elements': faces, 'colors': colors})
-    #Javascript(f"document.triangleDataSet = {json_data}")
-    Javascript("document.triangleDataSet = %s; console.log(document.triangleDataSet);" 
-           % json.dumps({'vertices': ver, 'faces': ele, 'pointdata': colors}))
-    Javascript("console.log(document.triangleDataSet);")
+    passdata(ver, ele, pointdata)
     print("Data converted and passed...")
     print("Display...")
     display_data()
