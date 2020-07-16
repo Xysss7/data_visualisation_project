@@ -35,7 +35,7 @@ dv.passdata(vertices, faces, point_data)
 
 cell[2]:
 ```python
-dv.visualize(vertices, faces, point_data)
+dv.visualization(vertices, faces, point_data)
 ```
 
 You will get 3D image visualized you data points.
