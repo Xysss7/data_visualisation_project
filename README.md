@@ -39,3 +39,4 @@ dv.visualization(vertices, faces, point_data)
 ```
 
 You will get 3D image visualized you data points.
+For more real-time clicked and picked elements information, press F12 to view in console.
