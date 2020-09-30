@@ -37,6 +37,34 @@ cell[2]:
 ```python
 dv.visualization(vertices, faces, point_data)
 ```
+You will get 3D image visualized you data points colored base vertex. 
 
-You will get 3D image visualized you data points.
-For more real-time clicked and picked elements information, press F12 to view in console.
+Example 2:
+
+cell[1]:
+```python
+import datavisualization as dv
+
+vertices = [0, 0, 0,
+            1, 0, 0,
+            1, 1, 0,
+            0, 1, 0]
+faces = [0, 1, 2,
+         0, 2, 3]
+point_data = [0.0, 1.0]
+dv.passdata_ele(vertices, faces, point_data)
+```
+
+cell[2]:
+```python
+dv.visualization_ele(vertices, faces, point_data)
+```
+You will get 3D image visualized you data points colored by elements. 
+
+
+Remember to let dv.passdata() be at the end of a Jupyter notebook cell,
+otherwise the data would not be passed into JavaScript from Python.
+
+After visualization, press F12 to open console, and you can view real-time clicked elements detailed information.
+For visualization colored by elements, object clicked would change color into a random red in varying degrees,
+presenting a more intuitive visual effect.

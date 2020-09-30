@@ -70,8 +70,6 @@ def display_data_elements():
         };
         var material = new THREE.MeshBasicMaterial(parameters);
         var triangles = new THREE.Mesh(geometry, material); 
-        triangles.translateX(-0.5);;
-        triangles.translateY(-0.5);;
 
         scene.add(triangles);
         camera.position.z = 2;
@@ -140,6 +138,19 @@ def display_data_elements():
     """
     display(HTML(html_code_visual_elements))
 
+def passdata_ele_nocolor(ver, ele):
+    eledata = np.linspace(0.2, 0.8, num=int(len(ele)/3))
+    check_result = check_data(ver, ele, eledata)
+    if check_result == False:
+        return False
+    colord = [ cm.jet(x) for x in eledata ]
+    js_code = """
+    document.triangleDataEle = %s; 
+    console.log(document.triangleDataEle);
+    """ % json.dumps({'vertices': ver, 'faces': ele, 'colors': colord})
+    print("Passing the data...")
+    return Javascript(js_code)
+
 
 def passdata_ele(ver, ele, eledata):
     check_result = check_data(ver, ele, eledata)
@@ -154,7 +165,7 @@ def passdata_ele(ver, ele, eledata):
     return Javascript(js_code)
 
 
-def visualization_ele(ver, ele, eledata):
+def visualization_ele(ver, ele, eledata=''):
     print("Display:")
     display_data_elements()
 
