@@ -68,3 +68,6 @@ otherwise the data would not be passed into JavaScript from Python.
 After visualization, press F12 to open console, and you can view real-time clicked elements detailed information.
 For visualization colored by elements, object clicked would change color into a random red in varying degrees,
 presenting a more intuitive visual effect.
+
+There is an .ipynb file and some initial data files in the jupyterlabfiles folder. 
+It records tests and basic function realization which could help you to understand better.
