@@ -5,12 +5,14 @@ from .data_validation import *
 import json
 
 
+# Data input validation
 def check_data(ver, ele, point):
     if check_vertices(ver) == False: return False
     if check_faces(ele) == False: return False
     if check_data_color(ele, point) == False: return False
 
 
+# Encapsulase the html code in this method
 def display_data_elements():
     html_code_visual_elements = """
     <style> canvas { width: 50%; height: 50% }</style>
@@ -21,10 +23,11 @@ def display_data_elements():
         </div>
     </div>
     <script type="module">
-        // initial set up
+        // initial resource import
         import * as THREE from 'https://unpkg.com/three@0.118.3/build/three.module.js';
         import { OrbitControls } from 'https://unpkg.com/three@0.118.3/examples/jsm/controls/OrbitControls.js';
 
+        // initial set up
         var renderWindowContainer = document.getElementById("mydiv_el");
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
@@ -42,13 +45,13 @@ def display_data_elements():
         var faces = document.triangleDataEle.faces;    
         var facecolors = document.triangleDataEle.colors;    
 
+        // Data processing into Three.js acceptable vertices, faces, colors data
         var i = 0;
         for (i = 0; i < vertices.length; i += 3) { 
             geometry.vertices.push(new THREE.Vector3(vertices[i], vertices[i+1], vertices[i+2]));
         }
         console.log(
-            document.triangleDataEle,
-            faces
+            document.triangleDataEle
         );
         var colors = new Array();
         for (i = 0; i < facecolors.length; i++) { 
@@ -82,6 +85,7 @@ def display_data_elements():
         function render() {
             renderer.render( scene, camera );
         }
+        
         function animate(){
             requestAnimationFrame( animate );
             controls.update();
@@ -125,14 +129,6 @@ def display_data_elements():
             }
             renderer.render( scene, camera );
             
-            // if want to get all objects clicked and objects behind the clicked elements 
-            // (keep for functions in future)
-            /*
-            for ( var i = 0; i < intersects.length; i++ ) {
-                console.log( intersects[ i ] ); 
-                console.log( intersects[ i ].point ); 
-            }
-            */
         }
     </script>
     """
